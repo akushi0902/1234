@@ -69,6 +69,11 @@ variable "subnet_cidr_block" {
   description = "Subnet CIDR block"
 }
 
+variable "subnet_availability_zone" {
+  type        = string
+  description = "Availability zone for the subnet"
+}
+
 variable "subnet_map_public_ip_on_launch" {
   type        = bool
   description = "Map public IP on launch for subnet"
