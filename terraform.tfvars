@@ -2,9 +2,9 @@ region = "ap-south-1"
 
 vpc_name             = "ec2-instance"
 vpc_cidr_block       = "10.0.0.0/16"
-availability_zones   = ["us-east-1a"]
+availability_zones   = ["ap-south-1a"]
 public_subnet_cidrs  = ["10.0.1.0/24"]
-private_subnet_cidrs = []
+private_subnet_cidrs = ["10.0.2.0/24"]
 map_public_ip_on_launch = true
 enable_dns_support   = true
 enable_dns_hostnames = true
@@ -13,7 +13,7 @@ enable_nat_gateway   = false
 
 subnet_name                     = "public-ec2-instance"
 subnet_cidr_block               = "10.0.1.0/24"
-subnet_availability_zone        = "us-east-1a"
+subnet_availability_zone        = "ap-south-1a"
 subnet_map_public_ip_on_launch  = true
 subnet_ipv6_cidr_block          = null
 assign_ipv6_address_on_creation = false
