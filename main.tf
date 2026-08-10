@@ -10,8 +10,8 @@ module "vpc" {
   map_public_ip_on_launch = var.map_public_ip_on_launch
   enable_dns_support    = var.enable_dns_support
   enable_dns_hostnames  = var.enable_dns_hostnames
-  single_nat_gateway    = var.single_nat_gateway
   enable_nat_gateway    = var.enable_nat_gateway
+  single_nat_gateway    = var.single_nat_gateway
   tags                  = {}
 }
 
@@ -22,14 +22,14 @@ module "subnet" {
   name                        = var.subnet_name
   vpc_id                      = module.vpc.vpc_id
   cidr_block                  = var.subnet_cidr_block
-  availability_zone           = var.subnet_availability_zone
+  availability_zone           = module.ec2.availability_zone
   map_public_ip_on_launch     = var.subnet_map_public_ip_on_launch
-  ipv6_cidr_block             = var.subnet_ipv6_cidr_block
   assign_ipv6_address_on_creation = var.assign_ipv6_address_on_creation
-  additional_routes           = var.additional_routes
+  ipv6_cidr_block             = var.ipv6_cidr_block
+  create_route_table          = var.create_route_table
   default_route_target_type   = var.default_route_target_type
   default_route_target_id     = var.default_route_target_id
-  create_route_table          = var.create_route_table
+  additional_routes           = var.additional_routes
   tags                        = {}
 }
 
@@ -64,7 +64,7 @@ module "iam_role" {
 }
 
 resource "aws_iam_instance_profile" "ec2_instance" {
-  name = var.iam_role_name
+  name = var.iam_instance_profile_name
   role = module.iam_role.role_name
 }
 
@@ -80,25 +80,14 @@ module "ec2" {
   iam_instance_profile                 = aws_iam_instance_profile.ec2_instance.name
   key_name                             = var.key_name
   associate_public_ip                  = var.associate_public_ip
-  ebs_volume_size                      = var.ebs_volume_size
-  ebs_volume_type                      = var.ebs_volume_type
-  ebs_encrypted                        = var.ebs_encrypted
   ebs_delete_on_termination            = var.ebs_delete_on_termination
+  ebs_encrypted                        = var.ebs_encrypted
+  ebs_volume_type                      = var.ebs_volume_type
+  ebs_volume_size                      = var.ebs_volume_size
   monitoring                           = var.monitoring
   metadata_http_tokens                 = var.metadata_http_tokens
   metadata_http_put_response_hop_limit = var.metadata_http_put_response_hop_limit
+  user_data                            = var.user_data
+  user_data_base64                     = var.user_data_base64
   tags                                 = {}
-}
-
-module "cloudwatch" {
-  source  = "app.terraform.io/TF01/cloudwatch/aws"
-  version = "~> 1.0.1"
-
-  log_groups    = var.log_groups
-  log_streams   = var.log_streams
-  metric_alarms = var.metric_alarms
-  event_rules   = var.event_rules
-  event_targets = var.event_targets
-  dashboards    = var.dashboards
-  tags          = {}
 }
