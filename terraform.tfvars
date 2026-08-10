@@ -66,6 +66,7 @@ security_group_tags = {
 
 subnet_name                    = "public-ec2-instance"
 subnet_cidr_block              = "10.0.1.0/24"
+subnet_availability_zone       = "us-east-1a"
 subnet_map_public_ip_on_launch = true
 ipv6_cidr_block                = null
 assign_ipv6_address_on_creation = false
