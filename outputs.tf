@@ -1,79 +1,67 @@
-output "log_group_arns" {
-  value       = module.cloudwatch.log_group_arns
-  description = "Map of log group keys to their ARNs"
-}
-
-output "log_group_names" {
-  value       = module.cloudwatch.log_group_names
-  description = "Map of log group keys to their names"
-}
-
 output "vpc_id" {
-  value       = module.vpc.vpc_id
-  description = "VPC ID"
+  value = module.vpc.vpc_id
 }
 
 output "vpc_cidr_block" {
-  value       = module.vpc.vpc_cidr_block
-  description = "VPC CIDR block"
+  value = module.vpc.vpc_cidr_block
+}
+
+output "public_subnet_ids" {
+  value = module.vpc.public_subnet_ids
 }
 
 output "internet_gateway_id" {
-  value       = module.vpc.internet_gateway_id
-  description = "Internet gateway ID"
-}
-
-output "security_group_id" {
-  value       = module.security_group.security_group_id
-  description = "Security group ID"
-}
-
-output "security_group_arn" {
-  value       = module.security_group.security_group_arn
-  description = "Security group ARN"
+  value = module.vpc.internet_gateway_id
 }
 
 output "subnet_id" {
-  value       = module.subnet.subnet_id
-  description = "Subnet ID"
+  value = module.subnet.subnet_id
 }
 
 output "subnet_cidr_block" {
-  value       = module.subnet.subnet_cidr_block
-  description = "Subnet CIDR block"
+  value = module.subnet.subnet_cidr_block
+}
+
+output "route_table_id" {
+  value = module.subnet.route_table_id
+}
+
+output "security_group_id" {
+  value = module.security_group.security_group_id
+}
+
+output "security_group_arn" {
+  value = module.security_group.security_group_arn
 }
 
 output "role_arn" {
-  value       = module.iam_role.role_arn
-  description = "IAM role ARN"
+  value = module.iam_role.role_arn
 }
 
 output "role_name" {
-  value       = module.iam_role.role_name
-  description = "IAM role name"
+  value = module.iam_role.role_name
 }
 
 output "instance_id" {
-  value       = module.ec2.instance_id
-  description = "EC2 instance ID"
+  value = module.ec2.instance_id
 }
 
 output "instance_arn" {
-  value       = module.ec2.instance_arn
-  description = "EC2 instance ARN"
+  value = module.ec2.instance_arn
 }
 
 output "public_ip" {
-  value       = module.ec2.public_ip
-  description = "EC2 instance public IP"
+  value = module.ec2.public_ip
 }
 
 output "private_ip" {
-  value       = module.ec2.private_ip
-  description = "EC2 instance private IP"
+  value = module.ec2.private_ip
 }
 
-output "availability_zone" {
-  value       = module.ec2.availability_zone
-  description = "EC2 instance availability zone"
+output "log_group_arns" {
+  value = module.cloudwatch.log_group_arns
+}
+
+output "log_group_names" {
+  value = module.cloudwatch.log_group_names
 }
